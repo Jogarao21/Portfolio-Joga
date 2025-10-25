@@ -1,0 +1,619 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+.about-section {
+  min-height: 100vh;
+  position: relative;
+  padding: 6rem 0 4rem;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 30%, #16213e 70%, #0f3460 100%);
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Animated Background */
+.about-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.gradient-orb {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, transparent 70%);
+  animation: float 8s ease-in-out infinite;
+}
+
+.orb-1 {
+  width: 300px;
+  height: 300px;
+  top: 10%;
+  right: 10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 200px;
+  height: 200px;
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 3s;
+}
+
+.orb-3 {
+  width: 250px;
+  height: 250px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 6s;
+}
+
+.grid-pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(0, 191, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 191, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  animation: gridMove 30s linear infinite;
+}
+
+/* Container */
+.about-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Header Section */
+.about-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.visible .about-header {
+  animation-delay: 0.2s;
+}
+
+.section-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 191, 255, 0.1);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 50px;
+  color: #00BFFF;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+/* Futuristic Title Styling */
+.title-glow {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.about-title {
+  font-family: 'Orbitron', monospace;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 900;
+  color: #ffffff;
+  line-height: 1.2;
+  margin: 0;
+  letter-spacing: 0.08em;
+  text-shadow: 
+    0 0 10px rgba(0, 245, 255, 0.5),
+    0 0 20px rgba(0, 245, 255, 0.3),
+    0 0 40px rgba(0, 245, 255, 0.1);
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #00BFFF, #0099CC, #66DDFF);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+.title-underline {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00f5ff, transparent);
+  animation: underlineGlow 2s ease-in-out infinite;
+}
+
+/* Content Grid */
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.content-left,
+.content-right {
+  opacity: 0;
+  transform: translateY(50px);
+  animation: fadeInUp 1s ease-out forwards;
+}
+
+.visible .content-left {
+  animation-delay: 0.4s;
+}
+
+.visible .content-right {
+  animation-delay: 0.6s;
+}
+
+/* Glass Card Base */
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 191, 255, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.glass-card:hover::before {
+  opacity: 1;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 191, 255, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 191, 255, 0.1);
+}
+
+/* Card Header */
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 191, 255, 0.1);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00BFFF;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover .profile-icon {
+  background: rgba(0, 191, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.card-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+/* Card Content */
+.card-content {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+.intro-text {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.name-highlight {
+  color: #00BFFF;
+  font-weight: 700;
+}
+
+.location-highlight {
+  color: #66DDFF;
+  font-weight: 600;
+}
+
+.intro-description,
+.summary-text {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.highlight-text {
+  color: #00BFFF;
+  font-weight: 600;
+}
+
+/* Hobbies Grid */
+.hobbies-description {
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.hobbies-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.hobby-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInLeft 0.6s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.visible .hobby-item {
+  animation-delay: calc(1s + var(--delay));
+}
+
+.hobby-item:hover {
+  background: rgba(0, 191, 255, 0.05);
+  border-color: rgba(0, 191, 255, 0.2);
+  transform: translateX(5px);
+}
+
+.hobby-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 191, 255, 0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00BFFF;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.hobby-item:hover .hobby-icon {
+  background: rgba(0, 191, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.hobby-content h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  margin: 0 0 0.25rem 0;
+}
+
+.hobby-content p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* Highlights Section */
+.highlights-card {
+  height: fit-content;
+  position: sticky;
+  top: 2rem;
+}
+
+.highlights-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.highlight-card {
+  position: relative;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.8s ease-out forwards;
+  animation-delay: var(--delay);
+}
+
+.visible .highlight-card {
+  animation-delay: calc(0.8s + var(--delay));
+}
+
+.highlight-card:hover {
+  background: rgba(0, 191, 255, 0.05);
+  border-color: rgba(0, 191, 255, 0.3);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 191, 255, 0.15);
+}
+
+.highlight-icon-wrapper {
+  position: relative;
+  width: fit-content;
+  margin-bottom: 1.5rem;
+}
+
+.highlight-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(0, 191, 255, 0.1);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00BFFF;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.highlight-card:hover .highlight-icon {
+  background: rgba(0, 191, 255, 0.2);
+  transform: scale(1.1);
+}
+
+.icon-glow {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(135deg, #00BFFF, #0099CC);
+  border-radius: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.highlight-card:hover .icon-glow {
+  opacity: 0.2;
+}
+
+.highlight-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: white;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.3;
+}
+
+.highlight-subtitle {
+  font-size: 0.9rem;
+  color: #00BFFF;
+  font-weight: 600;
+  margin: 0 0 1rem 0;
+}
+
+.highlight-description {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.highlight-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(0, 191, 255, 0.1), transparent, rgba(0, 191, 255, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.highlight-card:hover .highlight-border {
+  opacity: 1;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes titleGlow {
+  from {
+    text-shadow: 
+      0 0 10px rgba(0, 245, 255, 0.5),
+      0 0 20px rgba(0, 245, 255, 0.3),
+      0 0 40px rgba(0, 245, 255, 0.1);
+  }
+  to {
+    text-shadow: 
+      0 0 20px rgba(0, 245, 255, 0.8),
+      0 0 30px rgba(0, 245, 255, 0.5),
+      0 0 60px rgba(0, 245, 255, 0.2);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes underlineGlow {
+  0%, 100% {
+    opacity: 0.5;
+    transform: translateX(-50%) scaleX(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scaleX(1);
+  }
+}
+
+@keyframes gridMove {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(50px) translateY(50px);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .about-container {
+    padding: 0 1.5rem;
+  }
+  
+  .content-grid {
+    gap: 2rem;
+  }
+  
+  .highlights-card {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 4rem 0 3rem;
+  }
+  
+  .about-container {
+    padding: 0 1rem;
+  }
+  
+  .about-header {
+    margin-bottom: 3rem;
+  }
+  
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .glass-card {
+    padding: 1.5rem;
+  }
+  
+  .about-title {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 3rem 0 2rem;
+  }
+  
+  .glass-card {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .highlight-card {
+    padding: 1.5rem;
+  }
+  
+  .highlight-icon {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .hobby-item {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+  
+  .orb-1, .orb-2, .orb-3 {
+    display: none;
+  }
+  
+  .about-title {
+    font-size: clamp(1.2rem, 4vw, 1.8rem);
+  }
+}

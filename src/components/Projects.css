@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Inter:wght@400;600;700&display=swap');
+
+/* Section & Black Cosmic Background */
+.prj-section {
+  min-height: 100vh;
+  width: 100vw;
+  background: radial-gradient(ellipse at center, #0a0a0a 0%, #000000 50%, #0a0a0a 100%);
+  font-family: 'Inter', 'Orbitron', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.prj-bg {
+  position: absolute;
+  top:0; left:0; right:0; bottom:0;
+  z-index:1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 65% 38% at 18% 64%, #413a66a1 8%, transparent 96%),
+    radial-gradient(ellipse 32% 18% at 85% 13%, #034f67a0 6%, transparent 88%),
+    linear-gradient(109deg, #42428313 0 20%, transparent 68%);
+}
+
+/* Container & Header */
+.prj-container {
+  position: relative;
+  z-index:2;
+  width:100%;
+  max-width: 1160px;
+  margin: auto;
+  padding: 4rem 0 3rem 0;
+}
+.prj-header { text-align:center; margin-bottom:2.4rem; }
+
+.prj-title-glow {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 1.3rem;
+}
+
+.prj-title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 900;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: #fff;
+  letter-spacing: 0.11em;
+  line-height: 1.09;
+  text-shadow:
+    0 0 14px #6ffaff,
+    0 0 28px #08a6ba88,
+    0 3px 30px #06487a70;
+  animation: prj-title-glow 3s ease-in-out infinite alternate;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.prj-title-underline {
+  position: absolute;
+  bottom: -11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 68%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #03e3ff 44%, transparent);
+  border-radius: 1.8px;
+  animation: prj-underline-glow 2.4s ease-in-out infinite;
+}
+
+/* Grid & Card Layout */
+.prj-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 2.2rem;
+  width: 100%;
+  margin-top: 2.2rem;
+}
+
+/* Card */
+.prj-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(125deg, #37394855 24%, #1f2233e6 100%);
+  border-radius: 22px;
+  box-shadow: 0 2px 20px #001a2a38, 0 0 0 1px #08a9e888;
+  border: 1px solid #1346a021;
+  min-width: 0;
+  min-height: 170px;
+  padding: 1.7rem 1.2rem 1.4rem 1.2rem;
+  transition: box-shadow .25s cubic-bezier(.32,.56,.46,1), transform .23s, filter .2s;
+  overflow: hidden;
+  cursor: pointer;
+  text-decoration: none;
+  color: unset;
+  outline: none;
+  z-index: 2;
+  opacity: 0;
+  transform: translateY(38px) scale(0.97);
+  filter: grayscale(0.15) brightness(0.95);
+  will-change: box-shadow, transform, filter, opacity;
+}
+.prj-card.prj-card-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition: 
+    opacity .6s cubic-bezier(.45,.3,.45,1),
+    transform .65s cubic-bezier(.4,0,.2,1);
+}
+
+.prj-card:hover, .prj-card:focus-within {
+  box-shadow: 0 8px 48px #12caf429, 0 0 18px 2px #18cdcf2a, 0 0 0 1.1px #03e3ff;
+  transform: translateY(-8px) scale(1.027);
+  filter: none;
+}
+
+/* Glass Accents */
+.prj-card-glass {
+  position: absolute;
+  left: 0; top: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  border-radius: 22px;
+  background:
+    linear-gradient(70deg, #33d6e798 2%, transparent 33%, transparent 72%, #6f75ff 92%),
+    linear-gradient(110deg, #fff4 14%, transparent 67%);
+  opacity: 0.22;
+  z-index: 1;
+}
+
+.prj-card-content {
+  position: relative;
+  z-index:2;
+  display: flex;
+  flex-direction: column;
+  min-height: 140px;
+}
+
+.prj-card-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.4em;
+  margin-bottom: .48em;
+  flex-wrap: wrap;
+}
+.prj-card-title {
+  font-family: 'Orbitron', monospace;
+  color: #eaf3ff;
+  font-size: 1.18rem;
+  font-weight: 700;
+  line-height: 1.11;
+  margin:0; letter-spacing: .05em;
+  flex: 9 1 0%;
+}
+.prj-tech {
+  font-size: 0.99rem;
+  background: linear-gradient(88deg, #88e6fa 20%, #20eeff 94%);
+  color: #131e21;
+  font-weight: 700;
+  padding: 2.5px 11px 2.5px 11px;
+  border-radius: 14px;
+  margin-left: 0.45em;
+  letter-spacing: .02em;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px #35d8ff36;
+}
+
+.prj-card-url {
+  font-size: 1.01rem;
+  color: #34d3ff;
+  font-family: 'Inter', sans-serif;
+  word-break: break-all;
+  font-weight: 600;
+  margin-bottom: 0.32em;
+  line-height: 1.06;
+  text-decoration: underline dashed #57eaff22;
+  letter-spacing: .01em;
+  transition: color .17s;
+}
+.prj-card:hover .prj-card-url, .prj-card:focus .prj-card-url { color: #44f3fd; }
+.prj-card-desc {
+  font-size: 1.06rem; color: #eaeaea; margin: 0.39em 0 0 0; font-weight: 400;
+  font-family: 'Inter',sans-serif;
+  text-shadow: 0 2px 18px #1324391a;
+  letter-spacing: .01em;
+  line-height: 1.59;
+}
+.prj-card-arrow {
+  position: absolute;
+  right: 14px; top: 50%; transform: translateY(-50%);
+  opacity: .75;
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0px 2px 2px #03e3ff89);
+}
+
+/* Responsive Layout */
+@media (max-width: 1100px) {
+  .prj-card-grid {
+    gap: 1.3rem;
+  }
+  .prj-container { padding: 2.5rem 0; }
+}
+@media (max-width: 800px) {
+  .prj-header { margin-bottom: 1.3rem;}
+  .prj-container { padding: 1.3rem 1vw 2.3rem 1vw; }
+  .prj-title { font-size: 1.4rem; }
+  .prj-card-grid { margin-top: 1.2rem; }
+}
+@media (max-width: 650px) {
+  .prj-card-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .prj-container { padding: 1.4rem 4vw 1.4rem 4vw; }
+}
+@media (max-width:480px) {
+  .prj-container{padding: 1.1rem 1vw 0.5rem 1vw;}
+  .prj-card {padding: 1.13rem 0.65rem 0.98rem 0.65rem;}
+  .prj-title {font-size: 1.13rem; line-height: 1.13;}
+  .prj-card-title, .prj-tech {font-size: 1.06rem;}
+  .prj-card-desc {font-size: 0.98rem;}
+}
+
+/* Orbitron glow and underline animations */
+@keyframes prj-title-glow {
+  from {
+    text-shadow:
+      0 0 15px #44fff7cc,
+      0 0 28px #06e3bba0,
+      0 0 40px #0e0c8aaa;
+  }
+  to {
+    text-shadow:
+      0 0 30px #51c7f5,
+      0 0 44px #29ffe2,
+      0 4px 40px #076aab80;
+  }
+}
+@keyframes prj-underline-glow {
+  0%,100% { opacity: 0.53; transform: translateX(-50%) scaleX(.82);}
+  50% { opacity: 1; transform: translateX(-50%) scaleX(1);}
+}
